@@ -1,0 +1,69 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+html,body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.bg-info-opacity{
+    background-color: rgba(15, 54, 126, 0.17);
+}
+
+.bg-primary-opacity{
+    background-color: rgba(29, 177, 235, 0.408);
+}
+.custom-hover:hover{
+    color : hsl(30, 90%, 70%) !important;
+}
+
+.custom-swiper-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.custom-button-prev,
+.custom-button-next {
+    font-size: 18px;
+    padding: 4px 8px;
+    background-color: #001f5b; /* dark blue */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button-prev:hover,
+.custom-button-next:hover {
+    background-color: #003399;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-5px);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+    75% {
+        transform: translateY(-5px);
+    }
+}
+
+.wavy-btn {
+    display: inline-block;
+    animation: wave 1s infinite;
+}
