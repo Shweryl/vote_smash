@@ -60,6 +60,12 @@
                                 </a>
 
                             </li>
+                            <li class="nav-item me-3">
+                                <a href="{{route('tour.index')}}" class="fw-bold text-decoration-none text-secondary" >
+                                    Tours
+                                </a>
+
+                            </li>
                             @can('admin')
                             <li class="nav-item me-3">
                                 <a href="{{route('tour.create')}}" class="btn btn-secondary" role="button">

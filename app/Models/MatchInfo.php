@@ -12,9 +12,21 @@ class MatchInfo extends Model
         'start_time',
     ];
 
-    protected $with = ['match1Answers'];
+    protected $with = ['match1Answers','mvcs', 'user'];
 
     public function match1Answers(){
-        return $this->hasMany(Match1Answers::class);
+        return $this->hasMany(Match1Answers::class,'match_info_id');
+    }
+
+    public function mvcs(){
+        return $this->hasMany(Mvc::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function tour(){
+        return $this->belongsTo(Tour::class);
     }
 }

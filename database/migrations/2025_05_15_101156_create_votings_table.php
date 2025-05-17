@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('match_infos', function (Blueprint $table) {
+        Schema::create('votings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('mvc_id');
             $table->foreignId('user_id');
-            $table->foreignId('tour_id');
-            $table->timestamps('start_time');
+            $table->enum('comment',['Agree', 'Disagree', 'Improvement']);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('match_infos');
+        Schema::dropIfExists('votings');
     }
 };

@@ -1,7 +1,7 @@
 @extends('layouts.withNav')
 
 @section('content')
-    <div class="container-fluid h-100 px-0">
+    <div class="container-fluid h-100 px-0" x-data="visitData">
         <div class="banner bg-secondary py-4 d-flex justify-content-center">
             <div class="col-md-6  text-center">
                 <h2 class="fw-bold mb-3">Garner votes for your MVC in this tour!​</h2>
@@ -28,7 +28,9 @@
                     <p class="mb-2 mt-4"><strong>Video</strong> : {{ $tour->video_link }}</p>
                     <p><strong>Live Event</strong> : {{ $tour->live_event_link }}</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <p>{{ $tour->tour_time }} {{ $tour->tour_date }}</p>
+                        <p><span x-text="formattedTime(tour.tour_time)"></span>
+                            <span x-text="formattedDate(tour.tour_date)"></span>
+                        </p>
                         <p class="fw-bold text-secondary">$ 1.00 CAD</p>
                     </div>
                     @if (Auth::user()->tours->contains($tour->id))
@@ -36,7 +38,7 @@
                             <button type="button" class="btn btn-outline-secondary me-2">
                                 Purchased Tour
                             </button>
-                            <a href="{{route('tour.show',$tour->id)}}" class="btn btn-outline-secondary">Join Tour</a>
+                            <a href="{{ route('tour.show', $tour->id) }}" class="btn btn-outline-secondary">Join Tour</a>
                         </div>
                     @else
                         <div class="position-absolute top-0 start-100 translate-middle">
@@ -100,3 +102,34 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('visitData', () => ({
+                tour : @json($tour),
+                formattedDate(tourdate) {
+                    const date = new Date(tourdate);
+                    return date.toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+
+                },
+
+                formattedTime(tourTime) {
+                    const [hour, minute] = tourTime.split(':');
+                    const date = new Date();
+                    date.setHours(hour, minute);
+
+                    return date.toLocaleTimeString([], {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    });
+                },
+            }))
+
+        })
+    </script>
+@endpush

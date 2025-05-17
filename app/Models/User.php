@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function tours(){
         return $this->belongsToMany(Tour::class);
     }
+
+    public function mvcs(){
+        return $this->hasMany(Mvc::class);
+    }
 }

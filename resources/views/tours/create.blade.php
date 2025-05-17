@@ -144,7 +144,7 @@
                 <h2 class="fw-bold text-secondary text-center mb-4">Preview</h2>
                 <div class="card p-4 border border-1 border-secondary shadow">
                     <div class="position-relative">
-                        <img :src="cover_img" class="w-100 object-fit-cover" height="300" alt="">
+                        <img :src="cover_img" class="w-100 object-fit-cover" height="300" alt="Hidden Image">
                         <p
                             class="bg-primary-opacity position-absolute w-100 bottom-0 end-0 mb-0 text-center py-2 text-white">
                             <span x-text="previewTime"></span>
@@ -170,7 +170,7 @@
             Alpine.data('tourData', () => ({
                 title: '',
                 hostName: {{ Js::from(Auth::user()->full_name) }},
-                cover_img: '/images/preview_demo.jpg',
+                cover_img: '/images/default_preview1.jpg',
                 category: '1',
                 question: '',
                 questions: [{

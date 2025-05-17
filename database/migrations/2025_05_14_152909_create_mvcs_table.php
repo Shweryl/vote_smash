@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('match_infos', function (Blueprint $table) {
+        Schema::create('mvcs', function (Blueprint $table) {
             $table->id();
+            $table->string('MVC');
+            $table->tinyInteger('confidence_rating')->nullable();
+            $table->foreignId('match_info_id');
             $table->foreignId('user_id');
-            $table->foreignId('tour_id');
-            $table->timestamps('start_time');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('match_infos');
+        Schema::dropIfExists('mvcs');
     }
 };

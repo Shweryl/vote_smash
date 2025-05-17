@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/tour/purchase', [TourController::class, 'purchase'])->name('tour.purchase');
     Route::get('/tour/{id}/startMatch', [TourController::class, 'startMatch'])->name('tour.startMatch');
     Route::post('/tour/{id}/match1/answers', [TourController::class, 'submitAnswers'])->name('tour.match1Answers');
+    Route::post('/match/{id}/mvc', [TourController::class, 'submitMVC'])->name('match.mvcs');
+    Route::get('/mvc/{id}/vote/{comment}',[TourController::class, 'submitVote'])->name('vote');
+    Route::get('/tour/{id}/result',[TourController::class, 'calculateResult'])->name('tour.result');
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

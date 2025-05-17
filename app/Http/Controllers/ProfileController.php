@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    public function getProfile(){
+    public function getProfile(Request $request){
         $user = Auth::user();
-        return view('profile', compact('user'));
+        $toursquery = $user->tours();
+        if (!$request->has('show_more')) {
+            $toursquery->limit(1);
+        }
+        $tours= $toursquery->get();
+        return view('profile', compact('user', 'tours'));
     }
 
     public function updateForm(){

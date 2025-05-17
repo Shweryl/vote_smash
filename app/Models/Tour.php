@@ -8,30 +8,41 @@ class Tour extends Model
 {
     protected $fillable = [
         'title',
-        'category_id' ,
-        'question' ,
-        'tour_date' ,
-        'tour_time' ,
-        'cover_image' ,
+        'category_id',
+        'question',
+        'tour_date',
+        'tour_time',
+        'cover_image',
         'video_link',
         'live_event_link',
         'user_id'
     ];
 
+    protected $with = ['mvcs','user'];
 
-    public function category(){
+
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function users(){
+    public function users()
+    {
         return $this->belongsToMany(User::class);
     }
 
-    public function questions(){
+    public function questions()
+    {
         return $this->hasMany(Question::class);
+    }
+
+    public function mvcs()
+    {
+        return $this->hasManyThrough(Mvc::class, MatchInfo::class);
     }
 }
